@@ -22,6 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     $0.server = "https://parseapi.back4app.com"
             }
             Parse.initialize(with: parseConfig)
+        
+        if PFUser.current() != nil {
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            if #available(iOS 13.0, *) {
+                let feedNavigationController = main.instantiateViewController(identifier: "FeedNavigationController")
+                window?.rootViewController = feedNavigationController
+            } else {
+                // Fallback on earlier versions
+            }
+        }
         return true
     }
 
